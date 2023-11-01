@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import {connect} from 'react-redux';
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 
-function App() {
+function App({user}) {
+  const renderForm = user ? <LoginForm/> : <SignupForm/>
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Redux Login/Signup Form</h1>
+      {renderForm}
+    
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => ({
+  user : state.auth.user, 
+});
+
+export default connect(mapStateToProps)(App);
