@@ -6,10 +6,8 @@ function App({user}) {
   const renderForm = user ? <LoginForm/> : <SignupForm/>
   return (
     <div>
-      <h1>Redux Login/Signup Form</h1>
       {renderForm}
-    
-    </div>
+        </div>
   );
 };
 
