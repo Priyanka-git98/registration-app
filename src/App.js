@@ -1,18 +1,22 @@
-import {connect} from 'react-redux';
-import LoginForm from './components/LoginForm';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 import SignupForm from './components/SignupForm';
+import LoginForm from './components/LoginForm';
+import HomePage from './components/HomePage';
 
-function App({user}) {
-  const renderForm = user ? <LoginForm/> : <SignupForm/>
+const App = () => {
   return (
-    <div>
-      {renderForm}
-        </div>
+    <Router>
+      <Routes>
+        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <PrivateRoute path="/home" element={<HomePage />} />
+        <Route index element={<Navigate to="/signup" />} />
+      </Routes>
+    </Router>
   );
 };
 
-const mapStateToProps = (state) => ({
-  user : state.auth.user, 
-});
 
-export default connect(mapStateToProps)(App);
+
+export default App;
