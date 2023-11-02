@@ -5,9 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 
 
-
-
-
 const SignupForm = ({ signup }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -36,7 +33,7 @@ const SignupForm = ({ signup }) => {
   return (
     <div>
       <Typography component="h1" variant="h5">
-        Sign up
+        Create Your Account
       </Typography>
       <form onSubmit={handleSubmit}>
         <input
