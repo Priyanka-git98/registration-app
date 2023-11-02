@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { signup } from '../redux/authActions'
+import { signup } from '../redux/authActions';
+import { useNavigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+
+
+
+
 
 const SignupForm = ({ signup }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    // Retrieve signup data from local storage when the component mounts
+    const signupData = JSON.parse(localStorage.getItem('userData'));
+    console.log('Signup Data:', signupData);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,12 +30,14 @@ const SignupForm = ({ signup }) => {
     e.preventDefault();
     // Dispatch the signup action with the form data
     signup(formData);
+    navigate('/login');
   };
-  
 
   return (
     <div>
-      <h2>Signup</h2>
+      <Typography component="h1" variant="h5">
+        Sign up
+      </Typography>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

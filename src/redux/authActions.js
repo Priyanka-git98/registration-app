@@ -1,7 +1,7 @@
 export const signup = (formData) => {
+  localStorage.setItem('userData', JSON.stringify(formData));
     return {
       type: 'SIGNUP',
-      payload: formData,
     };
   };
   
@@ -11,4 +11,3 @@ export const signup = (formData) => {
       payload: formData,
     };
   };
-  
